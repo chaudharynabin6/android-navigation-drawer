@@ -5,12 +5,15 @@
         <menu>
             <item
                 android:icon="@drawable/ic_baseline_create_24"
+                android:id="@+id/fragment1"
                 android:title="Create" />
             <item
                 android:icon="@drawable/ic_baseline_read_more_24"
+                android:id="@id/fragment2"
                 android:title="Read" />
             <item
                 android:icon="@drawable/ic_baseline_update_24"
+                android:id="@+id/fragment3"
                 android:title="Update" />
             <item
                 android:icon="@drawable/ic_baseline_delete_24"

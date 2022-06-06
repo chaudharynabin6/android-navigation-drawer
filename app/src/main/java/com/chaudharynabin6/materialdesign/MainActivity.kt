@@ -2,41 +2,52 @@ package com.chaudharynabin6.materialdesign
 
 
 import android.os.Bundle
-import android.util.Log
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.*
 import com.chaudharynabin6.materialdesign.databinding.ActivityMainBinding
-import com.google.android.material.navigation.NavigationView
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
+    private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var navController: NavController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-        setSupportActionBar(binding.topAppBar)
+        setSupportActionBar(binding.toolbar)
 
 
+//        binding.topAppBar.setNavigationOnClickListener {
+//            binding.drawerLayout.open()
+//        }
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        navController = navHostFragment.navController
 
-        binding.topAppBar.setNavigationOnClickListener {
-            binding.drawerLayout.open()
-        }
-        binding.navView.setNavigationItemSelectedListener(this)
+        binding.navView.setupWithNavController(navController)
+        appBarConfiguration = AppBarConfiguration(
+            topLevelDestinationIds = setOf(
+                R.id.fragment1,
+                R.id.fragment2,
+                R.id.fragment3
+            ),
+            binding.drawerLayout
+        )
+        setupActionBarWithNavController(navController,appBarConfiguration)
+
+
 
 
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
-        Log.e("menu selected ...",item.toString())
-        item.isCheckable = true
-        binding.drawerLayout.close()
-        return true
+    override fun onSupportNavigateUp(): Boolean {
 
+        return navController.navigateUp(appBarConfiguration)
+                || super.onSupportNavigateUp()
     }
-
-
 }
