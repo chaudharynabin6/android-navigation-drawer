@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Material Design</string>
+    <string name="navDrawerOpen">navigation drawer open</string>
+    <string name="navDrawerClose">navigation drawer close</string>
 </resources>
