@@ -3,6 +3,9 @@ package com.chaudharynabin6.materialdesign
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
@@ -37,8 +40,10 @@ class MainActivity : AppCompatActivity() {
             ),
             binding.drawerLayout
         )
-        setupActionBarWithNavController(navController,appBarConfiguration)
+//        setupActionBarWithNavController(navController,appBarConfiguration)
+//        binding.toolbar.navigationIcon?.clearColorFilter()
 
+        binding.collapsingToolbarLayout.setupWithNavController(binding.toolbar,navController, appBarConfiguration)
 
 
 

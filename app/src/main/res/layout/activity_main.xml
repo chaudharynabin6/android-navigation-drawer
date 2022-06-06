@@ -11,18 +11,46 @@
     tools:context=".MainActivity">
 
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
 
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_collapseMode="pin" />
+            android:layout_height="128dp">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:collapsedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Collapsed"
+                app:expandedTitleMarginBottom="28dp"
+                app:expandedTitleMarginStart="72dp"
+                app:expandedTitleTextAppearance="@style/TextAppearance.App.CollapsingToolbar.Expanded"
+                tools:ignore="ExtraText">
+                >
+
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:elevation="0dp"
+                    app:layout_scrollFlags="scroll|enterAlways|snap"
+                    app:collapseIcon="@drawable/ic_baseline_menu_24"
+                    app:navigationIcon="@drawable/ic_baseline_menu_24"
+                    />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+        <!--        <androidx.appcompat.widget.Toolbar-->
+        <!--            android:id="@+id/toolbar"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="?attr/actionBarSize"-->
+        <!--            app:layout_collapseMode="pin" />-->
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView"
@@ -32,14 +60,16 @@
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_graph_navigation_drawer" />
 
-    </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         app:menu="@menu/drawer_menu"
         android:layout_height="match_parent"
-        android:layout_gravity="start" />
+        android:layout_gravity="start"
+        app:headerLayout="@layout/navigation_drawer_header"
+        />
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
